@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <form id="form">
+            <p:toolbar>
+                <f:facet name="left">
+                    <p:commandButton type="push" value="New" image="ui-icon-document" onclick="PF('dlg').show()" />
+                    <p:commandButton type="push" value="Open" image="ui-icon-folder-open"/>
+                    <span class="ui-separator">
+                        <span class="ui-icon ui-icon-grip-dotted-vertical" />
+                    </span>
+                    <p:commandButton type="push" title="Save" image="ui-icon-disk"/>
+                    <p:commandButton type="push" title="Delete" image="ui-icon-trash"/>
+                    <p:commandButton type="push" title="Print" image="ui-icon-print"/>
+                </f:facet>
+            </p:toolbar>
+
+            <p:dataTable var="empleado" value="#{empleadoMB.listaEmpleado}" style="padding-top: 20px">
+                <f:facet name="header">
+                    Lista de Empleados
+                </f:facet>
+                <p:column>
+                    <f:facet name="header">
+                        Nombre
+                    </f:facet>
+                    #{empleado.nombre}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Apellido
+                    </f:facet>
+                    #{empleado.apellido}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Cedula
+                    </f:facet>
+                    #{empleado.cedula}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Carga Familiar
+                    </f:facet>
+                    #{empleado.cargaFamiliar} 
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Dirección
+                    </f:facet>
+                    #{empleado.direccion}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Telefono
+                    </f:facet>
+                    #{empleado.telefono}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Sexo
+                    </f:facet>
+                    #{empleado.sexo}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Estudio
+                    </f:facet>
+                    #{empleado.estudios}
+                </p:column>
+            </p:dataTable>
+
+            <p:dialog header="Header Text" widgetVar="dlg">
+                <p:inputText value="Nombre" />
+                <p:inputText value="Apellido" />
+                <p:inputText value="Cedula" />
+
+                <p:inputText value="" />
+                <p:inputText value="Dirección" />
+                <p:inputText value="Telefono" />
+                <p:inputText value="" />
+                <p:inputText value="Empresa" />
+                <p:selectOneMenu value="#{empleadoMB.empleado}" var="p">
+                    <f:selectItem itemLabel="Select One" itemValue="" />
+                    <f:selectItems value="#{empleadoMB.listaEmpleado}" var="player"
+                                   itemLabel="#{player.nombre}" itemValue="#{player}"/>
+                    <p:column width="40">
+                        <p:outputLabel value="Holas" />
+                    </p:column>
+                </p:selectOneMenu>
+
+            </p:dialog>
+            <p:commandButton value="Hide" type="button" onclick="PF('dlg').hide()" />
+
+        </form>
+    </h:body>
+</html>
+
